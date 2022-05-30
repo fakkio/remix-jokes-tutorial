@@ -74,6 +74,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.active > a {
+  color: var(--color-foreground);
+}
+
 hr {
   display: block;
   height: 1px;

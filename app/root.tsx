@@ -1,16 +1,12 @@
-import type {LinksFunction} from "@remix-run/node";
-import {Links, LiveReload, Outlet, useCatch} from "@remix-run/react";
-
-import globalStylesUrl from "./styles/global.css";
-import globalMediumStylesUrl from "./styles/global-medium.css";
+import type {LinksFunction, MetaFunction} from "@remix-run/node";
+import {Links, LiveReload, Meta, Outlet, useCatch} from "@remix-run/react";
 import globalLargeStylesUrl from "./styles/global-large.css";
+import globalMediumStylesUrl from "./styles/global-medium.css";
+import globalStylesUrl from "./styles/global.css";
 
 export const links: LinksFunction = () => {
   return [
-    {
-      rel: "stylesheet",
-      href: globalStylesUrl,
-    },
+    {rel: "stylesheet", href: globalStylesUrl},
     {
       rel: "stylesheet",
       href: globalMediumStylesUrl,
@@ -24,6 +20,21 @@ export const links: LinksFunction = () => {
   ];
 };
 
+export const meta: MetaFunction = () => {
+  const description = `Learn Remix and laugh at the same time!`;
+  return {
+    charset: "utf-8",
+    description,
+    keywords: "Remix,jokes",
+    "twitter:image": "https://remix-jokes.lol/social.png",
+    "twitter:card": "summary_large_image",
+    "twitter:creator": "@remix_run",
+    "twitter:site": "@remix_run",
+    "twitter:title": "Remix Jokes",
+    "twitter:description": description,
+  };
+};
+
 function Document({
   children,
   title = `Remix: So great, it's funny!`,
@@ -34,7 +45,7 @@ function Document({
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
+        <Meta />
         <title>{title}</title>
         <Links />
       </head>
